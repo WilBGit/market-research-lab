@@ -1,0 +1,2452 @@
+{
+  "data_source": "Yahoo Finance chart API delayed proxy",
+  "symbols": [
+    "MNQ=F",
+    "NQ=F"
+  ],
+  "comparison_symbol": "ES=F",
+  "timeframe": "1m",
+  "htf": "15m",
+  "window_start_pt": "2026-11-01T15:10:00-08:00",
+  "window_end_pt": "2026-11-06T13:59:59-08:00",
+  "split_pt": "2026-11-04T20:24:29-08:00",
+  "grid_size": 135,
+  "configs": {
+    "MNQ=F": {
+      "eligible_count": 0,
+      "best_selected_on_train_wr_min_2": {
+        "config": {
+          "htf_minutes": 15,
+          "wait_bars": 10,
+          "body_atr": 0.75,
+          "fvg_atr": 0.0,
+          "stop_ticks": 1,
+          "target_r": 2.0,
+          "be_r": 1.0,
+          "max_hold": 60,
+          "max_entries_day": 3,
+          "require_smt": true,
+          "require_fvg": true,
+          "require_pd": true,
+          "tick": 0.25,
+          "slippage_ticks": 1,
+          "session_open": 510,
+          "session_close": 690
+        },
+        "summary": {
+          "all": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.969234907372923,
+            "profit_factor": 1.9791201478339837,
+            "max_drawdown_r": 1.0080645161290323,
+            "avg_r": 0.49230872684323074
+          },
+          "in_sample": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.969234907372923,
+            "profit_factor": 1.9791201478339837,
+            "max_drawdown_r": 1.0080645161290323,
+            "avg_r": 0.49230872684323074
+          },
+          "out_of_sample": {
+            "trades": 0,
+            "wins": 0,
+            "losses": 0,
+            "flats": 0,
+            "win_rate_pct": null,
+            "net_r": 0,
+            "profit_factor": null,
+            "max_drawdown_r": 0.0,
+            "avg_r": null
+          }
+        }
+      },
+      "best_selected_on_train_net_min_3": {
+        "config": {
+          "htf_minutes": 15,
+          "wait_bars": 10,
+          "body_atr": 0.75,
+          "fvg_atr": 0.0,
+          "stop_ticks": 1,
+          "target_r": 2.0,
+          "be_r": 1.0,
+          "max_hold": 60,
+          "max_entries_day": 3,
+          "require_smt": true,
+          "require_fvg": true,
+          "require_pd": true,
+          "tick": 0.25,
+          "slippage_ticks": 1,
+          "session_open": 510,
+          "session_close": 690
+        },
+        "summary": {
+          "all": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.969234907372923,
+            "profit_factor": 1.9791201478339837,
+            "max_drawdown_r": 1.0080645161290323,
+            "avg_r": 0.49230872684323074
+          },
+          "in_sample": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.969234907372923,
+            "profit_factor": 1.9791201478339837,
+            "max_drawdown_r": 1.0080645161290323,
+            "avg_r": 0.49230872684323074
+          },
+          "out_of_sample": {
+            "trades": 0,
+            "wins": 0,
+            "losses": 0,
+            "flats": 0,
+            "win_rate_pct": null,
+            "net_r": 0,
+            "profit_factor": null,
+            "max_drawdown_r": 0.0,
+            "avg_r": null
+          }
+        }
+      },
+      "top_out_of_sample_wr": [
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9420553164116265,
+              "profit_factor": 1.9656062267570953,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": 0.3236758860686044
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.04182592721732348,
+              "profit_factor": 0.9792037974306719,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": -0.01045648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9420553164116265,
+              "profit_factor": 1.9656062267570953,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": 0.3236758860686044
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.04182592721732348,
+              "profit_factor": 0.9792037974306719,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": -0.01045648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9524039002896223,
+              "profit_factor": 1.9707516296435454,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": 0.3254006500482704
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.031477343339327835,
+              "profit_factor": 0.9843492003171223,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": -0.007869335834831959
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9524039002896223,
+              "profit_factor": 1.9707516296435454,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": 0.3254006500482704
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.031477343339327835,
+              "profit_factor": 0.9843492003171223,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": -0.007869335834831959
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 1.5,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 2.461578212216228,
+              "profit_factor": 2.223917377264753,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.4923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 0.9685226566606722,
+              "profit_factor": 1.481557605555169,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.24213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.4930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 1.5,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 2.461578212216228,
+              "profit_factor": 2.223917377264753,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.4923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 0.9685226566606722,
+              "profit_factor": 1.481557605555169,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.24213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.4930555555555556
+            }
+          }
+        }
+      ],
+      "top_all_sample_wr_min_10": [],
+      "top_all_sample_wr_min_1": [
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9524039002896223,
+              "profit_factor": 1.9707516296435454,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": 0.3254006500482704
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.031477343339327835,
+              "profit_factor": 0.9843492003171223,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": -0.007869335834831959
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9524039002896223,
+              "profit_factor": 1.9707516296435454,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": 0.3254006500482704
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.031477343339327835,
+              "profit_factor": 0.9843492003171223,
+              "max_drawdown_r": 1.0204883323503169,
+              "avg_r": -0.007869335834831959
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9420553164116265,
+              "profit_factor": 1.9656062267570953,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": 0.3236758860686044
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.04182592721732348,
+              "profit_factor": 0.9792037974306719,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": -0.01045648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9420553164116265,
+              "profit_factor": 1.9656062267570953,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": 0.3236758860686044
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.04182592721732348,
+              "profit_factor": 0.9792037974306719,
+              "max_drawdown_r": 1.0308369162283126,
+              "avg_r": -0.01045648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9919406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9524039002896223,
+              "profit_factor": 1.4735432244054987,
+              "max_drawdown_r": 1.2704883323503169,
+              "avg_r": 0.15873398338160372
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5314773433393278,
+              "profit_factor": 0.7357449976980989,
+              "max_drawdown_r": 1.2704883323503169,
+              "avg_r": -0.13286933583483196
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7419406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9524039002896223,
+              "profit_factor": 1.4735432244054987,
+              "max_drawdown_r": 1.2704883323503169,
+              "avg_r": 0.15873398338160372
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5314773433393278,
+              "profit_factor": 0.7357449976980989,
+              "max_drawdown_r": 1.2704883323503169,
+              "avg_r": -0.13286933583483196
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7419406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9420553164116267,
+              "profit_factor": 1.4683978215190485,
+              "max_drawdown_r": 1.2808369162283126,
+              "avg_r": 0.15700921940193777
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5418259272173235,
+              "profit_factor": 0.7305995948116485,
+              "max_drawdown_r": 1.2808369162283126,
+              "avg_r": -0.13545648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7419406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9420553164116267,
+              "profit_factor": 1.4683978215190485,
+              "max_drawdown_r": 1.2808369162283126,
+              "avg_r": 0.15700921940193777
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5418259272173235,
+              "profit_factor": 0.7305995948116485,
+              "max_drawdown_r": 1.2808369162283126,
+              "avg_r": -0.13545648180433087
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4838812436289501,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7419406218144751
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.961578212216228,
+              "profit_factor": 2.969729985121823,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.7923156424432456
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9685226566606722,
+              "profit_factor": 1.978766010793216,
+              "max_drawdown_r": 1.0080645161290323,
+              "avg_r": 0.49213066416516804
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9930555555555556,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.9930555555555556
+            }
+          }
+        }
+      ]
+    },
+    "NQ=F": {
+      "eligible_count": 0,
+      "best_selected_on_train_wr_min_2": {
+        "config": {
+          "htf_minutes": 15,
+          "wait_bars": 10,
+          "body_atr": 0.75,
+          "fvg_atr": 0.0,
+          "stop_ticks": 1,
+          "target_r": 2.0,
+          "be_r": 1.0,
+          "max_hold": 60,
+          "max_entries_day": 3,
+          "require_smt": true,
+          "require_fvg": true,
+          "require_pd": true,
+          "tick": 0.25,
+          "slippage_ticks": 1,
+          "session_open": 510,
+          "session_close": 690
+        },
+        "summary": {
+          "all": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.9690249022196973,
+            "profit_factor": 1.9786788116295881,
+            "max_drawdown_r": 1.008695652173913,
+            "avg_r": 0.4922562255549243
+          },
+          "in_sample": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.9690249022196973,
+            "profit_factor": 1.9786788116295881,
+            "max_drawdown_r": 1.008695652173913,
+            "avg_r": 0.4922562255549243
+          },
+          "out_of_sample": {
+            "trades": 0,
+            "wins": 0,
+            "losses": 0,
+            "flats": 0,
+            "win_rate_pct": null,
+            "net_r": 0,
+            "profit_factor": null,
+            "max_drawdown_r": 0.0,
+            "avg_r": null
+          }
+        }
+      },
+      "best_selected_on_train_net_min_3": {
+        "config": {
+          "htf_minutes": 15,
+          "wait_bars": 10,
+          "body_atr": 0.75,
+          "fvg_atr": 0.0,
+          "stop_ticks": 1,
+          "target_r": 2.0,
+          "be_r": 1.0,
+          "max_hold": 60,
+          "max_entries_day": 3,
+          "require_smt": true,
+          "require_fvg": true,
+          "require_pd": true,
+          "tick": 0.25,
+          "slippage_ticks": 1,
+          "session_open": 510,
+          "session_close": 690
+        },
+        "summary": {
+          "all": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.9690249022196973,
+            "profit_factor": 1.9786788116295881,
+            "max_drawdown_r": 1.008695652173913,
+            "avg_r": 0.4922562255549243
+          },
+          "in_sample": {
+            "trades": 4,
+            "wins": 2,
+            "losses": 2,
+            "flats": 0,
+            "win_rate_pct": 50.0,
+            "net_r": 1.9690249022196973,
+            "profit_factor": 1.9786788116295881,
+            "max_drawdown_r": 1.008695652173913,
+            "avg_r": 0.4922562255549243
+          },
+          "out_of_sample": {
+            "trades": 0,
+            "wins": 0,
+            "losses": 0,
+            "flats": 0,
+            "win_rate_pct": null,
+            "net_r": 0,
+            "profit_factor": null,
+            "max_drawdown_r": 0.0,
+            "avg_r": null
+          }
+        }
+      },
+      "top_out_of_sample_wr": [
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.25,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.5,
+            "fvg_atr": 0.1,
+            "stop_ticks": 1,
+            "target_r": 2.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 5,
+              "wins": 3,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 60.0,
+              "net_r": 3.9617071408222087,
+              "profit_factor": 2.9691162017471138,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.7923414281644418
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": 1.9687001478152157,
+              "profit_factor": 1.978517396578772,
+              "max_drawdown_r": 1.008695652173913,
+              "avg_r": 0.49217503695380393
+            },
+            "out_of_sample": {
+              "trades": 1,
+              "wins": 1,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.993006993006993,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 1.993006993006993
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        }
+      ],
+      "top_all_sample_wr_min_10": [],
+      "top_all_sample_wr_min_1": [
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 1.0,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 1.9533037794776709,
+              "profit_factor": 1.970864827303994,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": 0.32555062991294514
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.03129985218478437,
+              "profit_factor": 0.984442806129138,
+              "max_drawdown_r": 1.0210957705521313,
+              "avg_r": -0.007824963046196093
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.9846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.9923018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9533037794776709,
+              "profit_factor": 1.473827532079177,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": 0.1588839632462785
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5312998521847844,
+              "profit_factor": 0.7359241585167295,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": -0.1328249630461961
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7423018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 20,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9533037794776709,
+              "profit_factor": 1.473827532079177,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": 0.1588839632462785
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5312998521847844,
+              "profit_factor": 0.7359241585167295,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": -0.1328249630461961
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7423018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 30,
+            "body_atr": 0.25,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9533037794776709,
+              "profit_factor": 1.473827532079177,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": 0.1588839632462785
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5312998521847844,
+              "profit_factor": 0.7359241585167295,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": -0.1328249630461961
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7423018158312276
+            }
+          }
+        },
+        {
+          "config": {
+            "htf_minutes": 15,
+            "wait_bars": 10,
+            "body_atr": 0.5,
+            "fvg_atr": 0.0,
+            "stop_ticks": 1,
+            "target_r": 0.75,
+            "be_r": 1.0,
+            "max_hold": 60,
+            "max_entries_day": 3,
+            "require_smt": true,
+            "require_fvg": true,
+            "require_pd": true,
+            "tick": 0.25,
+            "slippage_ticks": 1,
+            "session_open": 510,
+            "session_close": 690
+          },
+          "summary": {
+            "all": {
+              "trades": 6,
+              "wins": 4,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 66.66666666666666,
+              "net_r": 0.9533037794776709,
+              "profit_factor": 1.473827532079177,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": 0.1588839632462785
+            },
+            "in_sample": {
+              "trades": 4,
+              "wins": 2,
+              "losses": 2,
+              "flats": 0,
+              "win_rate_pct": 50.0,
+              "net_r": -0.5312998521847844,
+              "profit_factor": 0.7359241585167295,
+              "max_drawdown_r": 1.2710957705521313,
+              "avg_r": -0.1328249630461961
+            },
+            "out_of_sample": {
+              "trades": 2,
+              "wins": 2,
+              "losses": 0,
+              "flats": 0,
+              "win_rate_pct": 100.0,
+              "net_r": 1.4846036316624551,
+              "profit_factor": null,
+              "max_drawdown_r": 0.0,
+              "avg_r": 0.7423018158312276
+            }
+          }
+        }
+      ]
+    }
+  }
+}

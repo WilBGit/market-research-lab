@@ -1,0 +1,40 @@
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.p12
+*.pfx
+*credentials*
+*credential*
+*secret*
+*token*
+*oauth*
+
+# Market data, journals, and runtime state
+*.db
+*.sqlite
+*.sqlite3
+*.sqlite-journal
+*.jsonl
+*.log
+data/
+cache/
+.caches/
+state/
+runtime/
+logs/
+
+# Python and local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# OS files
+.DS_Store
+._*

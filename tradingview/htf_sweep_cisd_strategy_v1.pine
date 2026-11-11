@@ -1,0 +1,302 @@
+//@version=6
+strategy("HTF Sweep + SMT + CISD + PD Array [MNQ/NQ]",
+     overlay = true,
+     pyramiding = 0,
+     initial_capital = 100000,
+     process_orders_on_close = false,
+     calc_on_order_fills = true,
+     max_bars_back = 5000,
+     max_labels_count = 500)
+
+// This is a TradingView Strategy Tester companion for the supplied
+// HTF Sweep CISD indicator. It keeps the core research gates explicit:
+// HTF liquidity sweep -> SMT divergence -> CISD displacement -> FVG PD array.
+// It is a research/backtest script. It does not place broker orders.
+
+// ── Inputs ────────────────────────────────────────────────────────────────────
+grpCore = "Core model"
+htfTf = input.timeframe("15", "Higher timeframe", group = grpCore)
+smtSymbol = input.symbol("CME_MINI:ES1!", "SMT comparison symbol", group = grpCore)
+waitForClose = input.bool(true, "Require sweep close-back", group = grpCore)
+requireSMT = input.bool(true, "Require SMT divergence", group = grpCore)
+requirePD = input.bool(true, "Require premium/discount location", group = grpCore)
+requireFVG = input.bool(true, "Require FVG PD array", group = grpCore)
+maxSetupBars = input.int(20, "Max bars after sweep", minval = 2, maxval = 200, group = grpCore)
+
+grpEntry = "Entry and structure"
+entryMode = input.string("Limit midpoint", "Entry mode", options = ["Limit midpoint", "Market on confirmation"], group = grpEntry)
+minBodyAtr = input.float(0.50, "CISD body minimum (ATR)", minval = 0.0, maxval = 3.0, step = 0.05, group = grpEntry)
+minFvgAtr = input.float(0.10, "FVG minimum size (ATR)", minval = 0.0, maxval = 2.0, step = 0.05, group = grpEntry)
+stopBufferTicks = input.int(1, "Stop buffer beyond sweep (ticks)", minval = 1, maxval = 20, group = grpEntry)
+
+grpRisk = "Risk management"
+targetR = input.float(1.50, "Target (R)", minval = 0.25, maxval = 10.0, step = 0.25, group = grpRisk)
+breakEvenR = input.float(1.00, "Move stop to breakeven at (R, 0 = off)", minval = 0.0, maxval = 5.0, step = 0.25, group = grpRisk)
+maxHoldBars = input.int(60, "Maximum hold (bars)", minval = 1, maxval = 500, group = grpRisk)
+maxTradesDay = input.int(3, "Maximum entries per day", minval = 1, maxval = 20, group = grpRisk)
+
+grpFilter = "Filters and test window"
+tradeSession = input.session("0830-1130", "New York entry session", group = grpFilter)
+timeZone = input.string("America/New_York", "Session timezone", group = grpFilter)
+startDate = input.time(timestamp(2025, 1, 1, 0, 0), "Backtest start", group = grpFilter)
+endDate = input.time(timestamp(2030, 1, 1, 0, 0), "Backtest end", group = grpFilter)
+useTrendBias = input.bool(false, "Require HTF bias alignment", group = grpFilter)
+
+// ── Data ──────────────────────────────────────────────────────────────────────
+float atr = ta.atr(14)
+float body = math.abs(close - open)
+float tick = syminfo.mintick
+
+// Previous completed HTF candle. lookahead_off keeps the series non-forward-looking.
+[htfHighPrev, htfLowPrev, htfClosePrev, htfOpenPrev, htfTimePrev] = request.security(
+     syminfo.tickerid, htfTf, [high[1], low[1], close[1], open[1], time[1]],
+     gaps = barmerge.gaps_off, lookahead = barmerge.lookahead_off)
+
+// The correlated comparison series is used only for SMT confirmation.
+[smtHigh, smtLow] = request.security(
+     smtSymbol, timeframe.period, [high, low],
+     gaps = barmerge.gaps_off, lookahead = barmerge.lookahead_off,
+     ignore_invalid_symbol = true)
+[smtHighPrev, smtLowPrev] = request.security(
+     smtSymbol, htfTf, [high[1], low[1]],
+     gaps = barmerge.gaps_off, lookahead = barmerge.lookahead_off,
+     ignore_invalid_symbol = true)
+
+bool newHtf = ta.change(time(htfTf)) != 0
+bool inSession = not na(time(timeframe.period, tradeSession, timeZone))
+bool inDate = time >= startDate and time <= endDate
+bool confirmed = barstate.isconfirmed
+
+// A long sweep takes sell-side liquidity and closes back above the prior HTF low.
+// A short sweep takes buy-side liquidity and closes back below the prior HTF high.
+bool rawLongSweep = confirmed and not na(htfLowPrev) and low < htfLowPrev and (not waitForClose or close > htfLowPrev)
+bool rawShortSweep = confirmed and not na(htfHighPrev) and high > htfHighPrev and (not waitForClose or close < htfHighPrev)
+
+// One sweep event per HTF reference prevents repeated triggers on every LTF bar.
+var int lastLongSweepHtf = na
+var int lastShortSweepHtf = na
+bool longSweep = rawLongSweep and (na(lastLongSweepHtf) or htfTimePrev != lastLongSweepHtf)
+bool shortSweep = rawShortSweep and (na(lastShortSweepHtf) or htfTimePrev != lastShortSweepHtf)
+if longSweep
+    lastLongSweepHtf := htfTimePrev
+if shortSweep
+    lastShortSweepHtf := htfTimePrev
+
+// SMT: this market takes the HTF liquidity while ES does not take its matching level.
+bool smtLong = longSweep and not na(smtLow) and not na(smtLowPrev) and smtLow >= smtLowPrev
+bool smtShort = shortSweep and not na(smtHigh) and not na(smtHighPrev) and smtHigh <= smtHighPrev
+
+// ── Sweep contexts ────────────────────────────────────────────────────────────
+var bool longActive = false
+var bool shortActive = false
+var int longSweepBar = na
+var int shortSweepBar = na
+var float longExtreme = na
+var float shortExtreme = na
+var float longCisdLevel = na
+var float shortCisdLevel = na
+var bool longSmtOk = false
+var bool shortSmtOk = false
+var bool longCisdOk = false
+var bool shortCisdOk = false
+var bool longFvgOk = false
+var bool shortFvgOk = false
+var float longFvgTop = na
+var float longFvgBottom = na
+var float shortFvgTop = na
+var float shortFvgBottom = na
+
+// Use the latest opposing candle open as the CISD level.
+float lastBearOpen = ta.valuewhen(close < open, open, 0)
+float lastBullOpen = ta.valuewhen(close > open, open, 0)
+
+if longSweep
+    longActive := true
+    longSweepBar := bar_index
+    longExtreme := low
+    longCisdLevel := lastBearOpen
+    longSmtOk := smtLong
+    longCisdOk := false
+    longFvgOk := false
+    longFvgTop := na
+    longFvgBottom := na
+
+if shortSweep
+    shortActive := true
+    shortSweepBar := bar_index
+    shortExtreme := high
+    shortCisdLevel := lastBullOpen
+    shortSmtOk := smtShort
+    shortCisdOk := false
+    shortFvgOk := false
+    shortFvgTop := na
+    shortFvgBottom := na
+
+// Expire or invalidate contexts before building a new setup.
+if longActive and (bar_index - longSweepBar > maxSetupBars or close < longExtreme)
+    longActive := false
+if shortActive and (bar_index - shortSweepBar > maxSetupBars or close > shortExtreme)
+    shortActive := false
+
+bool longDisplacement = confirmed and longActive and close > open and not na(longCisdLevel) and close > longCisdLevel and body >= minBodyAtr * atr
+bool shortDisplacement = confirmed and shortActive and close < open and not na(shortCisdLevel) and close < shortCisdLevel and body >= minBodyAtr * atr
+if longDisplacement
+    longCisdOk := true
+if shortDisplacement
+    shortCisdOk := true
+
+// FVGs are the entry PD arrays. They are recorded after the sweep and can be
+// revisited by a limit order on later bars.
+bool longFvgNow = confirmed and longActive and bar_index > longSweepBar and low > high[2] and (low - high[2] >= minFvgAtr * atr)
+bool shortFvgNow = confirmed and shortActive and bar_index > shortSweepBar and high < low[2] and (low[2] - high >= minFvgAtr * atr)
+if longFvgNow
+    longFvgOk := true
+    longFvgTop := low
+    longFvgBottom := high[2]
+if shortFvgNow
+    shortFvgOk := true
+    shortFvgTop := low[2]
+    shortFvgBottom := high
+
+float pdEquilibrium = (htfHighPrev + htfLowPrev) / 2.0
+float longEntryPlan = longFvgOk ? (longFvgTop + longFvgBottom) / 2.0 : na
+float shortEntryPlan = shortFvgOk ? (shortFvgTop + shortFvgBottom) / 2.0 : na
+bool longPdOk = not requirePD or (not na(longEntryPlan) and longEntryPlan < pdEquilibrium)
+bool shortPdOk = not requirePD or (not na(shortEntryPlan) and shortEntryPlan > pdEquilibrium)
+bool longCoreOk = longActive and longCisdOk and (not requireFVG or longFvgOk) and longPdOk and (not requireSMT or longSmtOk)
+bool shortCoreOk = shortActive and shortCisdOk and (not requireFVG or shortFvgOk) and shortPdOk and (not requireSMT or shortSmtOk)
+
+// Optional HTF bias filter: the prior HTF close must be above/below its predecessor.
+float htfHighTwoBack = request.security(syminfo.tickerid, htfTf, high[2], lookahead = barmerge.lookahead_off)
+float htfLowTwoBack = request.security(syminfo.tickerid, htfTf, low[2], lookahead = barmerge.lookahead_off)
+bool htfBullBias = not na(htfClosePrev) and not na(htfHighTwoBack) and htfClosePrev > htfHighTwoBack
+bool htfBearBias = not na(htfClosePrev) and not na(htfLowTwoBack) and htfClosePrev < htfLowTwoBack
+longCoreOk := longCoreOk and (not useTrendBias or htfBullBias)
+shortCoreOk := shortCoreOk and (not useTrendBias or htfBearBias)
+
+// ── Order state ───────────────────────────────────────────────────────────────
+var bool orderActive = false
+var int orderDir = 0
+var int orderBar = na
+var float plannedEntry = na
+var float plannedStop = na
+var int entriesToday = 0
+var int dayStamp = na
+
+int currentDay = time("D")
+if na(dayStamp) or currentDay != dayStamp
+    dayStamp := currentDay
+    entriesToday := 0
+
+bool flat = strategy.position_size == 0
+bool canCreate = inDate and inSession and confirmed and flat and not orderActive and entriesToday < maxTradesDay
+bool bothSameBar = longCoreOk and shortCoreOk
+bool takeLong = canCreate and longCoreOk and not bothSameBar
+bool takeShort = canCreate and shortCoreOk and not bothSameBar
+
+if takeLong
+    plannedEntry := entryMode == "Market on confirmation" ? close : longEntryPlan
+    plannedStop := longExtreme - stopBufferTicks * tick
+    if not na(plannedEntry) and plannedEntry > plannedStop
+        strategy.entry("L", strategy.long, limit = entryMode == "Market on confirmation" ? na : plannedEntry, comment = "HTF sweep long")
+        orderActive := true
+        orderDir := 1
+        orderBar := bar_index
+        entriesToday += 1
+        longActive := false
+
+if takeShort
+    plannedEntry := entryMode == "Market on confirmation" ? close : shortEntryPlan
+    plannedStop := shortExtreme + stopBufferTicks * tick
+    if not na(plannedEntry) and plannedEntry < plannedStop
+        strategy.entry("S", strategy.short, limit = entryMode == "Market on confirmation" ? na : plannedEntry, comment = "HTF sweep short")
+        orderActive := true
+        orderDir := -1
+        orderBar := bar_index
+        entriesToday += 1
+        shortActive := false
+
+// Cancel stale/unfilled limit orders. The signal bar itself is not a fill bar.
+if orderActive and strategy.position_size == 0 and bar_index - orderBar > maxSetupBars
+    if orderDir == 1
+        strategy.cancel("L")
+    if orderDir == -1
+        strategy.cancel("S")
+    orderActive := false
+    orderDir := 0
+
+// ── Position management ───────────────────────────────────────────────────────
+var float activeEntry = na
+var float activeStop = na
+var float activeRisk = na
+var float activeTarget = na
+var int activeDir = 0
+var int activeEntryBar = na
+var bool beArmed = false
+
+bool enteredLong = strategy.position_size > 0 and nz(strategy.position_size[1]) <= 0
+bool enteredShort = strategy.position_size < 0 and nz(strategy.position_size[1]) >= 0
+if enteredLong or enteredShort
+    activeDir := enteredLong ? 1 : -1
+    activeEntry := strategy.position_avg_price
+    activeStop := plannedStop
+    activeRisk := math.abs(activeEntry - activeStop)
+    activeTarget := activeDir == 1 ? activeEntry + activeRisk * targetR : activeEntry - activeRisk * targetR
+    activeEntryBar := bar_index
+    beArmed := false
+    orderActive := false
+    orderDir := 0
+
+if strategy.position_size != 0 and not na(activeRisk) and activeRisk > 0
+    bool reachedBE = breakEvenR > 0 and (activeDir == 1 ? high >= activeEntry + activeRisk * breakEvenR : low <= activeEntry - activeRisk * breakEvenR)
+    if reachedBE
+        beArmed := true
+    float effectiveStop = beArmed ? activeEntry : activeStop
+    strategy.exit("LX", from_entry = "L", stop = activeDir == 1 ? effectiveStop : na, limit = activeDir == 1 ? activeTarget : na)
+    strategy.exit("SX", from_entry = "S", stop = activeDir == -1 ? effectiveStop : na, limit = activeDir == -1 ? activeTarget : na)
+    if bar_index - activeEntryBar >= maxHoldBars
+        strategy.close(activeDir == 1 ? "L" : "S", comment = "time stop")
+
+bool exited = strategy.position_size == 0 and nz(strategy.position_size[1]) != 0
+if exited
+    activeEntry := na
+    activeStop := na
+    activeRisk := na
+    activeTarget := na
+    activeDir := 0
+    activeEntryBar := na
+    beArmed := false
+
+// ── Plots, alerts, and compact stats ──────────────────────────────────────────
+plot(pdEquilibrium, "HTF equilibrium", color = color.new(color.yellow, 35), style = plot.style_linebr)
+plotshape(longSweep, "Long liquidity sweep", shape.triangleup, location.belowbar, color.new(color.lime, 0), size = size.tiny, text = "SW")
+plotshape(shortSweep, "Short liquidity sweep", shape.triangledown, location.abovebar, color.new(color.red, 0), size = size.tiny, text = "SW")
+plotshape(takeLong, "Long strategy order", shape.labelup, location.belowbar, color.new(color.green, 0), text = "LONG", textcolor = color.white)
+plotshape(takeShort, "Short strategy order", shape.labeldown, location.abovebar, color.new(color.red, 0), text = "SHORT", textcolor = color.white)
+
+alertcondition(takeLong, "Potential long", "Potential long: HTF sweep + SMT + CISD + PD array")
+alertcondition(takeShort, "Potential short", "Potential short: HTF sweep + SMT + CISD + PD array")
+
+var table dash = table.new(position.top_right, 2, 9, border_width = 1)
+if barstate.islast
+    int closed = strategy.closedtrades
+    float wr = closed > 0 ? strategy.wintrades / closed * 100.0 : na
+    float pf = strategy.grossloss != 0 ? strategy.grossprofit / math.abs(strategy.grossloss) : na
+    table.cell(dash, 0, 0, "Sweep/CISD backtest", bgcolor = color.new(color.blue, 20), text_color = color.white)
+    table.cell(dash, 1, 0, syminfo.tickerid + " · " + timeframe.period)
+    table.cell(dash, 0, 1, "Closed trades")
+    table.cell(dash, 1, 1, str.tostring(closed))
+    table.cell(dash, 0, 2, "Wins / losses")
+    table.cell(dash, 1, 2, str.tostring(strategy.wintrades) + " / " + str.tostring(strategy.losstrades))
+    table.cell(dash, 0, 3, "Win rate")
+    table.cell(dash, 1, 3, na(wr) ? "undefined" : str.tostring(wr, "#.##") + "%")
+    table.cell(dash, 0, 4, "Net profit")
+    table.cell(dash, 1, 4, str.tostring(strategy.netprofit, "#.##"))
+    table.cell(dash, 0, 5, "Profit factor")
+    table.cell(dash, 1, 5, na(pf) ? "undefined" : str.tostring(pf, "#.##"))
+    table.cell(dash, 0, 6, "Max drawdown")
+    table.cell(dash, 1, 6, str.tostring(strategy.max_drawdown, "#.##"))
+    table.cell(dash, 0, 7, "Open state")
+    table.cell(dash, 1, 7, strategy.position_size != 0 ? (activeDir == 1 ? "LONG" : "SHORT") : orderActive ? "ORDER WAIT" : "FLAT")
+    table.cell(dash, 0, 8, "Gates")
+    table.cell(dash, 1, 8, (requireSMT ? "SMT " : "") + (requireFVG ? "FVG " : "") + (requirePD ? "PD" : ""))

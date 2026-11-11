@@ -1,0 +1,151 @@
+//@version=6
+strategy("MNQ/NQ HTF Sweep + SMT + CISD + PD", overlay=true, pyramiding=0,
+     initial_capital=100000, process_orders_on_close=false, calc_on_order_fills=true,
+     max_bars_back=3000)
+
+// Research strategy: sweep -> SMT -> CISD displacement -> FVG/PD confirmation.
+// Orders are Strategy Tester orders only; no broker connection is present.
+htf = input.timeframe("15", "HTF")
+smtSym = input.symbol("CME_MINI:ES1!", "SMT symbol")
+requireSMT = input.bool(true, "Require SMT")
+requireFVG = input.bool(true, "Require FVG")
+requirePD = input.bool(true, "Require discount/premium")
+waitBars = input.int(20, "Max setup bars", minval=2, maxval=200)
+bodyATR = input.float(0.50, "CISD body ATR", minval=0, step=0.05)
+fvgATR = input.float(0.10, "FVG size ATR", minval=0, step=0.05)
+stopTicks = input.int(1, "Stop ticks beyond sweep", minval=1)
+targetR = input.float(1.50, "Target R", minval=0.25, step=0.25)
+beR = input.float(1.00, "Breakeven at R, 0=off", minval=0, step=0.25)
+maxHold = input.int(60, "Max hold bars", minval=1)
+maxDay = input.int(3, "Max entries/day", minval=1)
+sess = input.session("0830-1130", "NY session")
+tz = input.string("America/New_York", "Session timezone")
+start = input.time(timestamp("01 Jan 2025 00:00 +0000"), "Start")
+finish = input.time(timestamp("01 Jan 2030 00:00 +0000"), "End")
+
+atr = ta.atr(14)
+tick = syminfo.mintick
+body = math.abs(close-open)
+[pHi,pLo,pOp,pCl,pTime] = request.security(syminfo.tickerid, htf,
+     [high[1],low[1],open[1],close[1],time[1]], lookahead=barmerge.lookahead_off)
+[eHi,eLo] = request.security(smtSym, timeframe.period, [high,low],
+     lookahead=barmerge.lookahead_off, ignore_invalid_symbol=true)
+[eHiPrev,eLoPrev] = request.security(smtSym, htf, [high[1],low[1]],
+     lookahead=barmerge.lookahead_off, ignore_invalid_symbol=true)
+eq = (pHi+pLo)/2
+inSess = not na(time(timeframe.period,sess,tz))
+inDate = time >= start and time <= finish
+confirmed = barstate.isconfirmed
+
+longRaw = confirmed and low < pLo and close > pLo
+shortRaw = confirmed and high > pHi and close < pHi
+var int lastHTF = na
+longSweep = longRaw and (na(lastHTF) or pTime != lastHTF)
+shortSweep = shortRaw and (na(lastHTF) or pTime != lastHTF)
+if longSweep or shortSweep
+    lastHTF := pTime
+smtL = longSweep and not na(eLo) and not na(eLoPrev) and eLo >= eLoPrev
+smtS = shortSweep and not na(eHi) and not na(eHiPrev) and eHi <= eHiPrev
+
+var int dir = 0
+var int sweepBar = na
+var float extreme = na
+var float cisd = na
+var bool smtOK = false
+var bool fvgOK = false
+var bool cisdOK = false
+lastBearOpen = ta.valuewhen(close<open,open,0)
+lastBullOpen = ta.valuewhen(close>open,open,0)
+if longSweep
+    dir := 1
+    sweepBar := bar_index
+    extreme := low
+    cisd := lastBearOpen
+    smtOK := smtL
+    fvgOK := false
+    cisdOK := false
+if shortSweep
+    dir := -1
+    sweepBar := bar_index
+    extreme := high
+    cisd := lastBullOpen
+    smtOK := smtS
+    fvgOK := false
+    cisdOK := false
+if dir != 0 and (bar_index-sweepBar > waitBars or (dir==1 and close<extreme) or (dir==-1 and close>extreme))
+    dir := 0
+if dir==1 and close>cisd and close>open and body>=bodyATR*atr
+    cisdOK := true
+if dir==-1 and close<cisd and close<open and body>=bodyATR*atr
+    cisdOK := true
+if dir==1 and bar_index>sweepBar and low>high[2] and low-high[2]>=fvgATR*atr
+    fvgOK := true
+if dir==-1 and bar_index>sweepBar and high<low[2] and low[2]-high>=fvgATR*atr
+    fvgOK := true
+
+pdL = not requirePD or close<eq
+pdS = not requirePD or close>eq
+coreL = dir==1 and cisdOK and (not requireSMT or smtOK) and (not requireFVG or fvgOK) and pdL
+coreS = dir==-1 and cisdOK and (not requireSMT or smtOK) and (not requireFVG or fvgOK) and pdS
+
+var int day = na
+var int entries = 0
+if na(day) or day != time("D")
+    day := time("D")
+    entries := 0
+flat = strategy.position_size == 0
+enterL = confirmed and inSess and inDate and flat and entries<maxDay and coreL
+enterS = confirmed and inSess and inDate and flat and entries<maxDay and coreS
+var float plannedStop = na
+if enterL
+    plannedStop := extreme-stopTicks*tick
+    strategy.entry("L",strategy.long,comment="sweep/SMT/CISD long")
+    entries += 1
+    dir := 0
+if enterS
+    plannedStop := extreme+stopTicks*tick
+    strategy.entry("S",strategy.short,comment="sweep/SMT/CISD short")
+    entries += 1
+    dir := 0
+
+var float entry = na
+var float stop = na
+var float risk = na
+var float target = na
+var int activeDir = 0
+var int entryBar = na
+var bool be = false
+newL = strategy.position_size>0 and nz(strategy.position_size[1])<=0
+newS = strategy.position_size<0 and nz(strategy.position_size[1])>=0
+if newL or newS
+    activeDir := newL ? 1 : -1
+    entry := strategy.position_avg_price
+    stop := plannedStop
+    risk := math.abs(entry-stop)
+    target := activeDir==1 ? entry+risk*targetR : entry-risk*targetR
+    entryBar := bar_index
+    be := false
+if strategy.position_size != 0 and risk>0
+    if beR>0 and (activeDir==1 ? high>=entry+risk*beR : low<=entry-risk*beR)
+        be := true
+    liveStop = be ? entry : stop
+    strategy.exit("LX",from_entry="L",stop=activeDir==1?liveStop:na,limit=activeDir==1?target:na)
+    strategy.exit("SX",from_entry="S",stop=activeDir==-1?liveStop:na,limit=activeDir==-1?target:na)
+    if bar_index-entryBar>=maxHold
+        strategy.close(activeDir==1?"L":"S",comment="time stop")
+if strategy.position_size==0 and nz(strategy.position_size[1])!=0
+    entry := na
+    stop := na
+    risk := na
+    target := na
+    activeDir := 0
+    entryBar := na
+    be := false
+
+plot(eq,"HTF equilibrium",color=color.new(color.yellow,40))
+plotshape(longSweep,"Long sweep",shape.triangleup,location.belowbar,color=color.lime,size=size.tiny,text="SW")
+plotshape(shortSweep,"Short sweep",shape.triangledown,location.abovebar,color=color.red,size=size.tiny,text="SW")
+plotshape(enterL,"Long entry",shape.labelup,location.belowbar,color=color.green,text="LONG",textcolor=color.white)
+plotshape(enterS,"Short entry",shape.labeldown,location.abovebar,color=color.red,text="SHORT",textcolor=color.white)
+alertcondition(enterL,"Potential long","HTF sweep + SMT + CISD + PD long")
+alertcondition(enterS,"Potential short","HTF sweep + SMT + CISD + PD short")
