@@ -1,7 +1,5 @@
 # Market Research Lab
 
-[![CI](https://github.com/WilBGit/market-research-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/WilBGit/market-research-lab/actions/workflows/ci.yml)
-
 A reproducible, research-only workspace for NQ/MNQ liquidity-sweep studies, PD-array and CISD experiments, TradingView Pine prototypes, deterministic backtests, and V7.4.23 historical replay analysis.
 
 ## Research areas
