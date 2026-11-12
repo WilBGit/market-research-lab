@@ -1,5 +1,7 @@
 # Market Research Lab
 
+[![CI](https://github.com/WilBGit/market-research-lab/actions/workflows/ci.yml/badge.svg)](https://github.com/WilBGit/market-research-lab/actions/workflows/ci.yml)
+
 A reproducible, research-only workspace for NQ/MNQ liquidity-sweep studies, PD-array and CISD experiments, TradingView Pine prototypes, deterministic backtests, and V7.4.23 historical replay analysis.
 
 ## Research areas
@@ -45,7 +47,7 @@ Higher frequency did not produce a profitable configuration. These figures are p
 
 ```text
 python -m unittest discover -s tests -v
-python -m unittest discover -s tradingview -p 'test_*.py' -v
+python -m unittest tradingview.test_backtest_engine -v
 python v7423_historical_trade_replay.py --help
 ```
 
