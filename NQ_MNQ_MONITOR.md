@@ -26,9 +26,9 @@ For a long, the stop is one tick below the sweep extreme. For a short, it is one
 From this directory:
 
 ```text
-/path/to/external-drive/alpha-trading-floor/venv/bin/python scripts/scan_once.py --verbose
-/path/to/external-drive/alpha-trading-floor/venv/bin/python scripts/scan_once.py --report
-/path/to/external-drive/alpha-trading-floor/venv/bin/python -m unittest discover -s tests -v
+/Volumes/REDACTED/alpha-trading-floor/venv/bin/python scripts/scan_once.py --verbose
+/Volumes/REDACTED/alpha-trading-floor/venv/bin/python scripts/scan_once.py --report
+/Volumes/REDACTED/alpha-trading-floor/venv/bin/python -m unittest discover -s tests -v
 ```
 
 The journal is `data/journal.sqlite3`. Signals and outcomes are deduplicated by stable IDs. New paper signal/result alerts are posted to the Alpha Trading Floor Discord `#general` channel by the Hermes wrapper, with a retryable delivery outbox. Each emitted alert includes the latest NQ and MNQ levels, each contract's rolling liquidity low/high, pair trend state, and any swept liquidity or PD-array levels. Win rate is wins divided by resolved wins plus losses. Pending and timeouts are reported separately.
